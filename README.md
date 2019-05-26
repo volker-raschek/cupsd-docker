@@ -1,4 +1,4 @@
-# cups
+# cups [![Build Status](https://travis-ci.com/volker-raschek/cupsd.svg?branch=master)](https://travis-ci.com/volker-raschek/cupsd)
 Common Unix Printing System (CUPS), is the most widely used printing system on Linux
 systems. CUPS allows you to use, manage and share many printers on the network,
 as it is designed as a client/server system.
