@@ -4,11 +4,6 @@ FROM ubuntu:18.04
 # Environment
 ENV CUPS_ADMIN_USER=print
 ENV CUPS_ADMIN_PASSWD=print
-
-# Labels
-LABEL maintainer="Markus Pesch"
-
-# Non-Interactive
 ENV DEBIAN_FRONTEND="noninteractive"
 
 # Software installation
@@ -28,7 +23,12 @@ RUN apt-get update && \
       hplip && \
     rm -rf /var/lib/apt/lists/*
 
+COPY install-scripts /tmp/install-scripts
+RUN for i in /tmp/install-scripts/*; do sh $i; done
+
+# https://www.cups.org/doc/firewalls.html
+EXPOSE 631
+
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
-RUN chmod +x /usr/local/bin/entrypoint.sh
 
 ENTRYPOINT [ "/usr/local/bin/entrypoint.sh"]

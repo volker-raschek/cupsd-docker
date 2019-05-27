@@ -13,11 +13,12 @@ docker run \
   --detach \
   --env CUPS_ADMIN_USER=print \
   --env CUPS_ADMIN_PASSWD=print \
-  --network=host \
-  --volume /var/run/dbus:/var/run/dbus \
   --name cupsd \
+  --publish 631:631 \
+  --volume /var/run/dbus:/var/run/dbus \
   volkerraschek/cupsd
 ```
+  --network=host \
 
 or if you want to use a `docker-compose.yml`
 
@@ -29,10 +30,12 @@ services:
     environment:
       - CUPS_ADMIN_USER=print
       - CUPS_ADMIN_PASSWD=print
-    network_mode: host
+    image: volkerraschek/cupsd
+    ports:
+      - 631:631
     restart: always
     volumes:
       - /var/run/dbus:/var/run/dbus
 ```
 
-After starting the container, cups is available over http://localhost:631
+After starting the container, cups is available over http://localhost:631 or over your FQDN.
