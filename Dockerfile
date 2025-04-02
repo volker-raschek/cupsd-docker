@@ -1,5 +1,5 @@
 # Base-Image
-FROM docker.io/library/ubuntu:18.04
+FROM docker.io/library/ubuntu:24.04
 
 # Environment
 ENV CUPS_ADMIN_USER=print
